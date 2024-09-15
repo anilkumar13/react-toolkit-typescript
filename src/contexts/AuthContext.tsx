@@ -19,7 +19,6 @@ export const AuthContextProvider: React.FC<comProps> = ({ children }) => {
       const token = false;
       setIsAuthenticated(!!token); // Update the authentication status based on the presence of a token
     };
-
     checkAuthStatus();
   }, []);
   return (
