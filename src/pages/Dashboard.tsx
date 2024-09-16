@@ -39,35 +39,39 @@ export const Dashboard: React.FC = () => {
       Welcome to dashboard
       <br />
       <Link to="/login">Login</Link>
-      <table>
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Name</th>
-            <th>Email</th>
-            <th>Action</th>
-          </tr>
-        </thead>
-        <tbody>
-          {users.length > 0 ? (
-            users.map((user: INUser) => (
-              <tr key={user.id}>
-                <td>{user.id}</td>
-                <td>{user.name}</td>
-                <td>{user.email}</td>
-                <td>
-                  <button onClick={(e) => handleEdit(e, user)}>Edit</button>
-                  <button onClick={(e) => handleDelete(e, user.id)}>Delete</button>
-                </td>
-              </tr>
-            ))
-          ) : (
+      <div className="dashboard-container">
+        <table>
+          <thead>
             <tr>
-              <td colSpan={4}>No Record found</td>
+              <th>ID</th>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Action</th>
             </tr>
-          )}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {users.length > 0 ? (
+              users.map((user: INUser) => (
+                <tr key={user.id}>
+                  <td>{user.id}</td>
+                  <td>{user.name}</td>
+                  <td>{user.email}</td>
+                  <td>
+                    <button onClick={(e) => handleEdit(e, user)}>Edit</button>
+                    <button onClick={(e) => handleDelete(e, user.id)}>
+                      Delete
+                    </button>
+                  </td>
+                </tr>
+              ))
+            ) : (
+              <tr>
+                <td colSpan={4}>No Record found</td>
+              </tr>
+            )}
+          </tbody>
+        </table>
+      </div>
     </>
   );
 };
