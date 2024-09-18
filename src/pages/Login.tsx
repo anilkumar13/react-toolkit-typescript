@@ -1,27 +1,33 @@
-// import { useNavigate } from "react-router-dom";
-// import { useDispatch } from "react-redux";
-// import { login } from "../redux/userSlice";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { login } from "../redux/userSlice";
 import { useForm, SubmitHandler } from "react-hook-form";
 type UserForm = {
   username: string;
   password: string;
 };
 const Login: React.FC = () => {
-  // const dispatch = useDispatch();
-  // const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<UserForm>();
-  // const handleClick = () => {
-  //   // implement your login logic here
-  //   console.log("Login Clicked");
-  //   dispatch(login("admin"));
-  //   navigate("/dashboard");
-  // };
 
-  const onSubmit: SubmitHandler<UserForm> = (data) => console.log(data);
+  const onSubmit: SubmitHandler<UserForm> = (data) => {
+    if (data.username === "admin") {
+      dispatch(login("admin"));
+      navigate("/dashboard");
+    } else if (data.username === "user") {
+      dispatch(login("user"));
+      navigate("/userdashboard");
+    } else {
+      alert("Invalid credentials");
+      return;
+    }
+    console.log({ data });
+  };
   return (
     <>
       <div className="login-container">
@@ -64,7 +70,7 @@ const Login: React.FC = () => {
           </div>
         </form>
       </div>
-      {/* <Link to="/dashboard">Dashboard </Link> */}
+     
     </>
   );
 };

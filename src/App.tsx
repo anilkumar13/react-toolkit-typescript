@@ -5,6 +5,7 @@ import { Layout } from './components/Layout';
 import { Dashboard } from './pages/Dashboard';
 import { PageNotFound } from './components/PageNotFound';
 import PrivateRoute from './components/ProtectedRoute';
+import { UserDashboardComp } from './pages/userDashboard';
 function App() {
   return (
     <>
@@ -14,6 +15,9 @@ function App() {
           <Route path="login" element={<Login />} />
           <Route element={<PrivateRoute allowedRoles={['admin']} />}>
             <Route path="dashboard" element={<Dashboard />} />
+          </Route>
+          <Route element={<PrivateRoute allowedRoles={['user']} />}>
+            <Route path="userdashboard" element={<UserDashboardComp />} />
           </Route>
         </Route>
         <Route path="*" element={<PageNotFound />} />
